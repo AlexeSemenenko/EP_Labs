@@ -354,7 +354,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 
 				try
 				{
-					result = expr(WindowCalc.c_str());
+					result = calc(WindowCalc.c_str());
 				}
 				catch (std::exception const& ex)
 				{

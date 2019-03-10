@@ -11,3 +11,6 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include <sstream>
 
 #define MAX_SIZE 44
+
+bool isSeparator(char c);
+double calc(const char* str);
