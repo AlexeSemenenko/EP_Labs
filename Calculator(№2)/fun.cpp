@@ -127,14 +127,31 @@ double calc(const char* str)
 		}
 		break;
 	case '~':
+		if (sd == 1)
+			throw std::exception("Error! This operation does not apply to fractional numbers.");
+		else
+		{
+			int si = 0;
+			si = static_cast<int>(s);
+			result = (~si) & 0x0007;
+//			result = ~fi;
+		}
+		break;
+	case '!':
 		if (fd == 1)
 			throw std::exception("Error! This operation does not apply to fractional numbers.");
 		else
 		{
+			int fac = 1;
 			int fi = 0;
 			fi = static_cast<int>(f);
-			result = ~fi;
+			for (int i = 1; i <= fi; i++)
+				fac *= i;
+			result = static_cast<double>(fac);
 		}
+		break;
+	case '?':
+		result = sqrt(s);
 		break;
 	default:
 		break;;
@@ -145,7 +162,7 @@ double calc(const char* str)
 
 bool isSeparator(char c)
 {
-	char separator[] = { "+,-,*,/,X,|,<,>,&,^,~" };
+	char separator[] = { "+,-,*,/,X,|,<,>,&,^,~,!,?" };
 	int i = 0;
 
 	while (separator[i] != '\0')

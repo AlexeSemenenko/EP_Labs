@@ -1,4 +1,4 @@
-#include "header.h" 
+﻿#include "header.h" 
 
 LONG WINAPI WndProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI WinMain(HINSTANCE hInstance,
@@ -52,7 +52,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	CreateWindow("button", "XOR", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 270, 250, 55, 40, hwnd, (HMENU)25, hInstance, NULL);
 	CreateWindow("button", "<<", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 335, 100, 55, 40, hwnd, (HMENU)26, hInstance, NULL);
 	CreateWindow("button", ">>", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 335, 150, 55, 40, hwnd, (HMENU)27, hInstance, NULL);
-
+	CreateWindow("button", "!", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 335, 200, 55, 40, hwnd, (HMENU)28, hInstance, NULL);
+	CreateWindow("button", "?(sqrt)", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 335, 250, 55, 40, hwnd, (HMENU)29, hInstance, NULL);
 
 	ShowWindow(hwnd, nCmdShow);
 	UpdateWindow(hwnd);
@@ -109,7 +110,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "1";
 
 			if (!WindowCalc.size())
@@ -127,7 +128,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "2";
 
 			if (!WindowCalc.size())
@@ -144,7 +145,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "3";
 
 			if (!WindowCalc.size())
@@ -161,7 +162,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "4";
 
 			if (!WindowCalc.size())
@@ -177,7 +178,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				break;
 			}
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "5";
 
 			if (!WindowCalc.size())
@@ -194,7 +195,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "6";
 
 			if (!WindowCalc.size())
@@ -211,7 +212,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "7";
 
 			if (!WindowCalc.size())
@@ -228,7 +229,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "8";
 
 			if (!WindowCalc.size())
@@ -245,7 +246,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "9";
 
 			if (!WindowCalc.size())
@@ -262,7 +263,7 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 			}
 
 			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '~')
+				if (WindowCalc[WindowCalc.size() - 1] != '!')
 					WindowCalc += "0";
 
 			if (!WindowCalc.size())
@@ -282,7 +283,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "/";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -299,7 +301,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "*";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -316,7 +319,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "-";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -333,7 +337,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "+";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -383,7 +388,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += ".";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -401,7 +407,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "^";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -420,12 +427,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				break;
 			}
 
-			if (WindowCalc.size())
-				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
-					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
-					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
-					WindowCalc += "~";
+			if (WindowCalc.size() == 0)
+				WindowCalc += "~";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
 		}
@@ -441,7 +444,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "&";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -458,7 +462,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "|";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -475,7 +480,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "X";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -492,7 +498,8 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += "<";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
@@ -509,8 +516,39 @@ LONG WINAPI WndProc(HWND hwnd, UINT Message, WPARAM wparam, LPARAM lparam)
 				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
 					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
 					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
-					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X')
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
 					WindowCalc += ">";
+			InvalidateRect(hwnd, NULL, TRUE);
+			break;
+		}
+		case 28:
+		{
+			if (WindowCalc.size() + 1 > MAX_SIZE)
+			{
+				MessageBox(hwnd, oversize, "exception", Message);
+				break;
+			}
+
+			if (WindowCalc.size())
+				if (WindowCalc[WindowCalc.size() - 1] != '+' && WindowCalc[WindowCalc.size() - 1] != '-' && WindowCalc[WindowCalc.size() - 1] != '*'
+					&& WindowCalc[WindowCalc.size() - 1] != '/' && WindowCalc[WindowCalc.size() - 1] != '.' && WindowCalc[WindowCalc.size() - 1] != '^'
+					&& WindowCalc[WindowCalc.size() - 1] != '&' && WindowCalc[WindowCalc.size() - 1] != '|' && WindowCalc[WindowCalc.size() - 1] != '<'
+					&& WindowCalc[WindowCalc.size() - 1] != '>' && WindowCalc[WindowCalc.size() - 1] != '~' && WindowCalc[WindowCalc.size() - 1] != 'X'
+					&& WindowCalc[WindowCalc.size() - 1] != '!' && WindowCalc[WindowCalc.size() - 1] != '?')
+					WindowCalc += "!";
+			InvalidateRect(hwnd, NULL, TRUE);
+			break;
+		}
+		case 29:
+		{
+			if (WindowCalc.size() + 1 > MAX_SIZE)
+			{
+				MessageBox(hwnd, oversize, "exception", Message);
+				break;
+			}
+			if (WindowCalc.size() == 0)
+				WindowCalc += "?";
 			InvalidateRect(hwnd, NULL, TRUE);
 			break;
 		}
