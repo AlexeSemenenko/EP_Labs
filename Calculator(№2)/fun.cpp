@@ -157,9 +157,14 @@ double calc(const char* str)
 			int fac = 1;
 			int fi = 0;
 			fi = static_cast<int>(f);
-			for (int i = 1; i <= fi; i++)
-				fac *= i;
-			result = static_cast<double>(fac);
+			if (fi >= 17)
+				throw std::exception("Sorry, but this number is too big for me.");
+			else 
+			{
+				for (int i = 1; i <= fi; i++)
+					fac *= i;
+				result = static_cast<double>(fac);
+			}
 		}
 		break;
 	case '?':
@@ -171,15 +176,20 @@ double calc(const char* str)
 		else
 		{
 			int fi = static_cast<int>(f);
-			double b = 0;
-			int c = 1;
-			while (fi >= 1)
+			if (fi >= 64)
+				throw std::exception("Sorry, but this number is too big for me.");
+			else
 			{
-				b += (fi % 2) * c;
-				fi = fi / 2;
-				c *= 10;
+				double b = 0;
+				int c = 1;
+				while (fi >= 1)
+				{
+					b += (fi % 2) * c;
+					fi = fi / 2;
+					c *= 10;
+				}
+				result = b;
 			}
-			result = b;
 		}
 		break;
 	default:
