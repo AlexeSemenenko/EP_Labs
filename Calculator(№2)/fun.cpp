@@ -2,9 +2,22 @@
 
 double calc(const char* str)
 {
+	int j = 0;
+	auto flag = 0;
+	while (str[j] != '\0')
+	{
+		if (str[j] == '+' || str[j] == '-' || str[j] == '*' || str[j] == '/' || str[j] == '^' || str[j] == '!' || str[j] == 'b' || str[j] == '?' || str[j] == '~' || str[j] == '&' || str[j] == '<'
+			|| str[j] == '>' || str[j] == '|' || str[j] == 'X')
+			flag = 1;
+		j++;
+	}
+
+	if (flag == 0)
+		throw std::exception("You didn't choose any operation.");
+
 	int i = 0;
 	double result = 0;
-	int j = 0;
+	int z = 0;
 	int k = 0;
 	double f = 0;
 	double s = 0;
@@ -14,9 +27,9 @@ double calc(const char* str)
 
 	while (!isSeparator(str[i]))
 	{
-		first[j] = str[i];
+		first[z] = str[i];
 		i++;
-		j++;
+		z++;
 	}
 
 	op[0] = str[i];
@@ -66,10 +79,10 @@ double calc(const char* str)
 			throw std::exception("Error! Division by zero.");
 		break;
 	case '^':
-		if (f != 0 && s != 0)
+		if (f == 0)
+			result = 0;
+		else
 			result = pow(f, s);
-		if (f == 0 && s == 0)
-			result = 1;
 		break;
 	case 'X':
 		if (fd == 1 || sd == 1)
@@ -133,8 +146,7 @@ double calc(const char* str)
 		{
 			int si = 0;
 			si = static_cast<int>(s);
-			result = (~si) & 0x0007;
-//			result = ~fi;
+			result = ~si;
 		}
 		break;
 	case '!':
@@ -153,6 +165,23 @@ double calc(const char* str)
 	case '?':
 		result = sqrt(s);
 		break;
+	case 'b':
+		if (fd == 1)
+			throw std::exception("Error! This operation does not apply to fractional numbers.");
+		else
+		{
+			int fi = static_cast<int>(f);
+			double b = 0;
+			int c = 1;
+			while (fi >= 1)
+			{
+				b += (fi % 2) * c;
+				fi = fi / 2;
+				c *= 10;
+			}
+			result = b;
+		}
+		break;
 	default:
 		break;;
 	}
@@ -162,7 +191,7 @@ double calc(const char* str)
 
 bool isSeparator(char c)
 {
-	char separator[] = { "+,-,*,/,X,|,<,>,&,^,~,!,?" };
+	char separator[] = { "+,-,*,/,X,|,<,>,&,^,~,!,?,b" };
 	int i = 0;
 
 	while (separator[i] != '\0')
