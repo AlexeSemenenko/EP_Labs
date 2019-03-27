@@ -58,12 +58,16 @@ CvigenerecipherDlg::CvigenerecipherDlg(CWnd* pParent /*=nullptr*/)
 void CvigenerecipherDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT1, encr_file);
+	DDX_Control(pDX, IDC_EDIT2, output_file);
+	DDX_Control(pDX, IDC_EDIT3, keyword);
 }
 
 BEGIN_MESSAGE_MAP(CvigenerecipherDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CvigenerecipherDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -152,3 +156,13 @@ HCURSOR CvigenerecipherDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CvigenerecipherDlg::OnBnClickedButton1()
+{
+	CString file1, file2, key;
+	encr_file.GetWindowTextW(file1);
+	output_file.GetWindowTextW(file2);
+	keyword.GetWindowTextW(key);
+	// TODO: добавьте свой код обработчика уведомлений
+}
