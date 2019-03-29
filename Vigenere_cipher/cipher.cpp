@@ -103,28 +103,3 @@ std::string encrypt(std::string to_encrypt, std::string key, std::string square[
 
 	return res;
 }
-/*
-int main()
-{
-	std::string square[27][27] = {};
-	create_square(square);
-	for (auto& i : square)
-	{
-		for (const auto& j : i)
-		{
-			std::cout << j;
-		}
-		std::cout << std::endl;
-	}
-
-	const std::string keyword = "man";
-	const std::string to_encrypt = "Hello, Alex";
-	std::string key;
-	key = create_key(to_encrypt, keyword);
-	//std::cout << key;
-	std::string res = encrypt(to_encrypt, key, square);
-	std::cout << res;
-	system("pause");
-	return 0;
-}
-*/
