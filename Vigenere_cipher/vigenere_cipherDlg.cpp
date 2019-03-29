@@ -6,6 +6,8 @@
 #include "vigenere_cipher.h"
 #include "vigenere_cipherDlg.h"
 #include "afxdialogex.h"
+#include <fstream>
+#include "cipher.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -164,5 +166,33 @@ void CvigenerecipherDlg::OnBnClickedButton1()
 	encr_file.GetWindowTextW(file1);
 	output_file.GetWindowTextW(file2);
 	keyword.GetWindowTextW(key);
+
+	std::ifstream in(file1);
+	std::ofstream out(file2);
+
+	std::string square[27][27] = {};
+	create_square(square);
+
+	CT2CA psz_converted_ansi_string(key);
+	std::string keyword(psz_converted_ansi_string);
+
+	std::string to_encrypt;
+	std::string key_;
+	std::string result;
+
+	while(!in.eof())
+	{
+		getline(in, to_encrypt);
+
+		key_ = create_key(to_encrypt, keyword);
+		result = encrypt(to_encrypt, key_, square);
+
+		out << result << std::endl;
+		
+	}
+	in.close();
+	out.close();
+	AfxMessageBox(L"Сompleted successfully");
+
 	// TODO: добавьте свой код обработчика уведомлений
 }
