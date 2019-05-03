@@ -19,6 +19,8 @@ struct concert
 	int left{};
 	int capacity{};
 	tm date{};
+
+	void get_info(std::string info);
 };
 
 class concerts_list
@@ -27,6 +29,7 @@ public:
 	using vector_t = std::vector<concert>;
 	vector_t list_;
 
+	void add_concert(std::string info);
 	using iterator = vector_t::iterator;
 	concerts_list() = default;
 	concerts_list(concerts_list const&) = delete;
@@ -38,8 +41,8 @@ public:
 	void sort_by_date();
 	std::vector<concert>::iterator begin();
 	std::vector<concert>::iterator end();
-	std::vector<concert>::iterator find_first_name(std::string const&);
-	std::vector<concert>::iterator find_first_date_between(tm const& date1, tm const& date2);
+	std::vector<concert> find_first_name(std::string const&);
+	std::vector<concert> find_first_date_between(tm const& date1, tm const& date2);
 
 	friend std::istream& operator>>(std::istream& in, concerts_list& l1);
 	friend std::ostream& operator<<(std::ostream& out, const concerts_list& l1);

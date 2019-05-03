@@ -1,12 +1,40 @@
 #include "concerts.h"
 
+void concert::get_info(std::string info)
+{
+	auto pos = 0;
+	std::string subs[4];
+
+	for (auto i = 0; i < 3; i++)
+	{
+		pos = info.find(';');
+		subs[i] = info.substr(0, pos);
+		info.erase(0, pos + 1);
+	}
+	subs[3] = info;
+
+	name = subs[0];
+	capacity = std::stol(subs[1]);
+	left = std::stol(subs[2]);
+	std::stringstream ss(subs[3]);
+	ss >> std::get_time(&date, "%Y-%m-%d %H:%M");
+}
+
+void concerts_list::add_concert(std::string info)
+{
+	concert buf{};
+	buf.get_info(info);
+	list_.push_back(buf);
+}
+
 std::ostream& operator<<(std::ostream& out, const concerts_list& l1)
 {
 	for (auto const& l : l1.list_)
 	{
-		out << l.name << ";" << l.capacity << ";" << l.left <<
-			";" << std::put_time(&l.date, "%Y-%m-%d %H:%M") << std::endl;
+		out << l.name << ";" << l.capacity << ";" << l.left << ";" 
+			<< std::put_time(&l.date, "%Y-%m-%d %H:%M") << std::endl;
 	}
+
 	return out;
 }
 
@@ -87,20 +115,54 @@ void concerts_list::sort_by_date()
 	});
 }
 
-std::vector<concert>::iterator concerts_list::find_first_name(std::string const& c_name)
+std::vector<concert>concerts_list::find_first_name(std::string const& c_name)
 {
-	return std::find_if(list_.begin(), list_.end(), [&c_name](concert const& c)
+	std::vector<concert>::iterator temp = std::find_if(list_.begin(), list_.end(), [&c_name](concert const& c)
 	{
-		return c.name == c_name;
+		int len1 = c.name.length(), len2 = c_name.length();
+		int min_len = len1 <= len2 ? len1 : len2;
+
+		return c.name.substr(0, min_len) == c_name.substr(0, min_len);
 	});
+
+	std::vector<concert> found_concerts;
+
+	while (temp != list_.end())
+	{
+		found_concerts.push_back(*temp);
+
+		temp = std::find_if(++temp, list_.end(), [&c_name](concert const& c)
+		{
+			int len1 = c.name.length(), len2 = c_name.length();
+			int min_len = len1 <= len2 ? len1 : len2;
+
+			return c.name.substr(0, min_len) == c_name.substr(0, min_len);
+		});
+	}
+
+	return found_concerts;
 }
 
-std::vector<concert>::iterator concerts_list::find_first_date_between(tm const& date1, tm const& date2)
+std::vector<concert> concerts_list::find_first_date_between(tm const& date1, tm const& date2)
 {
 	tm d1 = date1, d2 = date2;
 
-	return std::find_if(list_.begin(), list_.end(), [&d1, &d2](concert & c)
+	std::vector<concert>::iterator temp = std::find_if(list_.begin(), list_.end(), [&d1, &d2](concert & c)
 	{
 		return (mktime(&d1) <= mktime(&c.date)) && (mktime(&c.date) <= mktime(&d2));
 	});
+
+	std::vector<concert> found_concerts;
+
+	while (temp != list_.end())
+	{
+		found_concerts.push_back(*temp);
+
+		temp = std::find_if(++temp, list_.end(), [&d1, &d2](concert & c)
+		{
+			return (mktime(&d1) <= mktime(&c.date)) && (mktime(&c.date) <= mktime(&d2));
+		});
+	}
+
+	return found_concerts;
 }
