@@ -1,1 +1,1 @@
-Labs UP
+Educational Practice Labs
